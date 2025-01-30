@@ -1,0 +1,131 @@
+#include <WiFi.h>
+#include <PubSubClient.h>
+//#include "BluetoothSerial.h"
+#include "DHT.h"
+
+#include <BLEDevice.h>
+#include <BLEUtils.h>
+#include <BLEServer.h>
+#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+
+//#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+//#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+//#endif
+
+#define DHTPIN 15
+#define DHTTYPE DHT11
+// Initialise DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+//BluetoothSerial SerialBT;
+
+// Variables to hold sensor readings
+float temperature = 0;
+float humidity = 0;
+
+unsigned long previousMillis = 0;  // Stores last time temperature was published
+const long interval = 10000;       // Interval at which to publish sensor readings
+
+const char* ssid = "index";
+const char* password = "password";
+const char* mqttServer = "maqiatto.com";
+const int mqttPort = 1883;
+//const char* mqttUser = "mqtt username";
+//const char* mqttPassword = "mqtt password";
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("] ");
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+  }
+  Serial.println();
+}
+
+void setup() {
+  dht.begin();
+  Serial.begin(115200);
+
+  BLEDevice::init("siltnamiukas");
+  BLEServer *pServer = BLEDevice::createServer();
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+                                         CHARACTERISTIC_UUID,
+                                         BLECharacteristic::PROPERTY_READ |
+                                         BLECharacteristic::PROPERTY_WRITE
+                                       );
+
+  pCharacteristic->setValue("Hello World");
+  pService->start();
+  // BLEAdvertising *pAdvertising = pServer->getAdvertising();  // this still is working for backward compatibility
+  BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
+  pAdvertising->addServiceUUID(SERVICE_UUID);
+  pAdvertising->setScanResponse(true);
+  pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
+  pAdvertising->setMinPreferred(0x12);
+  BLEDevice::startAdvertising();
+  Serial.println("Characteristic defined! Now you can read it in your phone!");
+
+  
+ 
+//  SerialBT.begin("siltnamis"); //Bluetooth device name
+  Serial.println("The device started, now you can pair it with bluetooth!");
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("Connecting to WiFi..");
+  }
+
+  Serial.println("Connected to the WiFi network");
+
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(callback);
+
+  while (!client.connected()) {
+    Serial.println("Connecting to MQTT...");
+
+    if (client.connect("ESP32Client", "x@gmail.com", "password")) {
+
+      Serial.println("connected");
+
+    } else {
+
+      Serial.print("failed with state ");
+      Serial.print(client.state());
+      delay(2000);
+
+    }
+  }
+
+  client.publish("x@gmail.com/test", String(temperature).c_str());
+  client.subscribe("x@gmail.com/test");
+
+
+}
+
+void loop() {
+  client.loop();
+
+  unsigned long currentMillis = millis();
+  // Every X number of seconds (interval = 10 seconds)
+  // it publishes a new MQTT message
+  if (currentMillis - previousMillis >= interval) {
+    // Save the last time a new reading was published
+    previousMillis = currentMillis;
+    // New DHT sensor readings
+    humidity = dht.readHumidity();
+    // Read temperature as Celsius (the default)
+    temperature = dht.readTemperature();
+    // Read temperature as Fahrenheit (isFahrenheit = true)
+    //temp = dht.readTemperature(true);
+
+    client.publish("x@gmail.com/test", String(temperature).c_str());
+    //uint16_t packetIdPub2 = mqttClient.publish(MQTT_PUB_HUM, 1, true, String(hum).c_str());
+  }
+}

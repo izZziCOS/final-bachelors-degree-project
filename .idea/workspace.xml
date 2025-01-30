@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0b615780-3397-4eaa-b19e-794b69206fc6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/arduino/arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/arduino/arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/screens/HomeScreen.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zB3w4BUWEQZIRmrE3amVM2KJXM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0b615780-3397-4eaa-b19e-794b69206fc6" name="Default Changelist" comment="" />
+      <created>1633607888341</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633607888341</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1165" y="562" width="846" height="628" key="#Notifications" timestamp="1633607974363">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1165" y="562" width="846" height="628" key="#Notifications/0.0.2560.1400/-2560.0.2048.1112@0.0.2560.1400" timestamp="1633607974363" />
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1633608458689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-2560.0.2048.1112@0.0.2560.1400" timestamp="1633608458689" />
+    <state x="-2480" y="79" width="1888" height="954" key="AVDManager" timestamp="1634151624483">
+      <screen x="-2560" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-2480" y="79" width="1888" height="954" key="AVDManager/0.0.2560.1400/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1634151624483" />
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager/0.0.2560.1400/-2560.0.2048.1112@0.0.2560.1400" timestamp="1634143601006" />
+    <state x="781" y="344" key="SettingsEditor" timestamp="1633625687434">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/-2560.0.2048.1112@0.0.2560.1400" timestamp="1633625687434" />
+  </component>
+</project>

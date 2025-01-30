@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "298507038010",
+    "firebase_url": "https://siltnamis-98684-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "siltnamis-98684",
+    "storage_bucket": "siltnamis-98684.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298507038010:android:1479015eda0514dc323403",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298507038010-7pnor9q9mel8233qiebl87dsm54518hd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdBnuTObpeXpGaW6GUScSGvAIuPuZiLZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298507038010-7pnor9q9mel8233qiebl87dsm54518hd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
