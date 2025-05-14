@@ -1,4 +1,5 @@
 package mqttServer
+
 import (
 	"log"
 
@@ -15,7 +16,7 @@ func SendMessage(data1, data2, body string) {
 		},
 		Notification: &fcm.Notification{
 			Title: "Išmanusis kambarinių augalų šiltnamis",
-			Body: body,
+			Body:  body,
 		},
 	}
 

@@ -169,7 +169,6 @@ func UpdateSettings(c *gin.Context) {
 		settings.SoilHumidity1From, settings.SoilHumidity2From, settings.OwnSettings, settings.Houseplant1, settings.Houseplant2)
 	errors.HandleErr(c, err)
 
-
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -268,6 +267,7 @@ func Login(c *gin.Context) {
 	fmt.Println(tokenString)
 	c.JSON(http.StatusOK, gin.H{"success": true, "msg": "Sėkmingai prisijungta", "user": claims.User, "token": tokenString})
 }
+
 // Checks if email that user registered with exists in the database
 func checkUserExists(user db.Register) bool {
 	rows, err := db.DB.Query(db.CheckUserExists, user.Email)

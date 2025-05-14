@@ -37,21 +37,21 @@ type SensorValues struct {
 
 // UserData struct - stores all data about greenhouse
 type UserData struct {
-	ID 					int `json:"id"`
-	Device    			string `json:"device"`
-	Fan      			bool `json:"fan"`
-	Light   			bool `json:"light"`
-	LightFrom 			string `json:"lightFrom"`
-	LightTo 			string `json:"lightTo"`
-	TemperatureFrom 	float64 `json:"temperatureFrom"`
-	TemperatureTo 		float64 `json:"temperatureTo"`
-	HumidityTo   		float64 `json:"humidityTo"`
-	HumidityFrom 		float64 `json:"humidityFrom"`
-	SoilHumidity1From 	float64 `json:"soilHumidity1From"`
-	SoilHumidity2From 	float64 `json:"soilHumidity2From"`
-	OwnSettings 		bool `json:"ownSettings"`
-	Houseplant1			string `json:"houseplant1"`
-	Houseplant2			string `json:"houseplant2"`
+	ID                int     `json:"id"`
+	Device            string  `json:"device"`
+	Fan               bool    `json:"fan"`
+	Light             bool    `json:"light"`
+	LightFrom         string  `json:"lightFrom"`
+	LightTo           string  `json:"lightTo"`
+	TemperatureFrom   float64 `json:"temperatureFrom"`
+	TemperatureTo     float64 `json:"temperatureTo"`
+	HumidityTo        float64 `json:"humidityTo"`
+	HumidityFrom      float64 `json:"humidityFrom"`
+	SoilHumidity1From float64 `json:"soilHumidity1From"`
+	SoilHumidity2From float64 `json:"soilHumidity2From"`
+	OwnSettings       bool    `json:"ownSettings"`
+	Houseplant1       string  `json:"houseplant1"`
+	Houseplant2       string  `json:"houseplant2"`
 }
 
 // MqttServer initializes connection and subscribes to mqtt broker
@@ -94,10 +94,10 @@ var messagePubHandler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Me
 
 // CallMessage calls notification class to send a message
 func CallMessage(currentValue SensorValues) {
-	temperature := "Oro temperatūra neatitinka šiltnamio nustatymų = "+ fmt.Sprint(currentValue.Temperature) +"°C, turėtu būti " + fmt.Sprint(Settings.TemperatureFrom) +"-"+ fmt.Sprint(Settings.TemperatureTo) +"°C ribose"
-	humidity := "Oro drėgmė neatitinka šiltnamio nustatymų = "+ fmt.Sprint(currentValue.Humidity) +"%, turėtu būti " + fmt.Sprint(Settings.HumidityFrom) +"-"+ fmt.Sprint(Settings.HumidityTo) +"% ribose"
-	both := "Oro drėgmė ir temperatūra neatitinka šiltnamio nustatymų = "+ fmt.Sprint(currentValue.Humidity) +"% ir " + fmt.Sprint(currentValue.Temperature) +
-		"°C, turėtu būti" + fmt.Sprint(Settings.HumidityFrom) +"-"+ fmt.Sprint(Settings.HumidityTo) +"% ir" + fmt.Sprint(Settings.TemperatureFrom) +"-"+ fmt.Sprint(Settings.TemperatureTo) + "°C ribose"
+	temperature := "Oro temperatūra neatitinka šiltnamio nustatymų = " + fmt.Sprint(currentValue.Temperature) + "°C, turėtu būti " + fmt.Sprint(Settings.TemperatureFrom) + "-" + fmt.Sprint(Settings.TemperatureTo) + "°C ribose"
+	humidity := "Oro drėgmė neatitinka šiltnamio nustatymų = " + fmt.Sprint(currentValue.Humidity) + "%, turėtu būti " + fmt.Sprint(Settings.HumidityFrom) + "-" + fmt.Sprint(Settings.HumidityTo) + "% ribose"
+	both := "Oro drėgmė ir temperatūra neatitinka šiltnamio nustatymų = " + fmt.Sprint(currentValue.Humidity) + "% ir " + fmt.Sprint(currentValue.Temperature) +
+		"°C, turėtu būti" + fmt.Sprint(Settings.HumidityFrom) + "-" + fmt.Sprint(Settings.HumidityTo) + "% ir" + fmt.Sprint(Settings.TemperatureFrom) + "-" + fmt.Sprint(Settings.TemperatureTo) + "°C ribose"
 	switch {
 	case Settings.TemperatureFrom > currentValue.Temperature || Settings.TemperatureTo < currentValue.Temperature:
 		SendMessage("test", "test1", temperature)
@@ -156,7 +156,7 @@ func GetUserData() {
 
 	defer db.Close()
 	err = db.QueryRow(`SELECT * FROM settings WHERE id = 1`).Scan(&Settings.ID, &Settings.Device, &Settings.Fan, &Settings.Light, &Settings.LightFrom, &Settings.LightTo,
-		 &Settings.HumidityFrom, &Settings.HumidityTo, &Settings.TemperatureFrom, &Settings.TemperatureTo, &Settings.SoilHumidity1From,
+		&Settings.HumidityFrom, &Settings.HumidityTo, &Settings.TemperatureFrom, &Settings.TemperatureTo, &Settings.SoilHumidity1From,
 		&Settings.SoilHumidity2From, &Settings.OwnSettings, &Settings.Houseplant1, &Settings.Houseplant2)
 	if err != nil {
 		fmt.Println(err.Error())
